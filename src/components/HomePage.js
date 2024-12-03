@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./Navbar";  // Import the Navbar component
+import Navbar from "./Navbar";  // Import the Navbar component// Import the Navbar component
 import InfoBox from "./InfoBox"; // Import the InfoBox component
 import networksvg from '../assets/network-01.svg';
 import { Link } from "gatsby";
