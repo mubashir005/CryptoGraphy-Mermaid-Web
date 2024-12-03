@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";  // Import the Navbar component
 import InfoBox from "./InfoBox"; // Import the InfoBox component
+import networksvg from '../assets/network-01.svg';
 import { Link } from "gatsby";
 import  "../styles/global.css"
 
@@ -79,7 +80,7 @@ const HomePage = () => {
     const infoBox = document.getElementById("info-box");
 
     // Fetch and inject the SVG content
-    fetch('network-01.svg')
+    fetch(networksvg)
       .then(response => response.text())
       .then(svgContent => {
         svgContainer.innerHTML = svgContent;
