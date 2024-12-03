@@ -4,6 +4,7 @@
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "homepage": "https://github.com/mubashir005/rohelweb",
   "dependencies": {
     "gatsby": "^5.14.0",
     "gatsby-plugin-image": "^3.14.0",
@@ -15,6 +16,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "gh-pages": "^6.2.0",
     "prettier": "^2.8.8"
   },
   "keywords": [
@@ -28,7 +30,8 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+     "deploy": "gatsby build && gh-pages -d public"
   },
   "repository": {
     "type": "git",
@@ -37,4 +40,6 @@
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
+
+  
 }

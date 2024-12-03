@@ -1,0 +1,95 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Raleway', sans-serif; /* Updated to use Raleway font */
+    background: linear-gradient(120deg, white, lightgrey); 
+}
+
+/* Top Menu Bar */
+.top-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #0056b3;
+    color: white;
+}
+
+.menu-item {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.menu-item:hover {
+    color: #ffcc00;
+}
+
+/* Search Bar */
+.search-bar {
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Map Container */
+.map-container {
+    position: relative;
+    width: 100%;
+    max-width: 1450px;
+    margin: 20px auto;
+}
+
+/* Info Box */
+.info-box {
+    position: absolute;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #343a40;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    line-height: 1.4;
+    pointer-events: none;
+    border: 1px solid #ced4da;
+    z-index: 100;
+    max-width: 300px;
+    display: none;
+}
+
+.info-box::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: #e9ecef transparent transparent transparent;
+}
+
+.info-box h4 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+    text-transform: uppercase;
+}
+
+.info-box p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Icon Styles */
+.icon {
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.icon:hover {
+    filter: drop-shadow(0 0 10px rgba(0, 123, 255, 0.8));
+}
