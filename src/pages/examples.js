@@ -8,7 +8,7 @@ const examplePage = ({ pageContext }) => {
 
   return (
     <Layout>
-      <h1>{example}</h1>
+      <h1>example Page</h1>
       <p>Welcome to the example page!</p>
       <Link to="/">Go back to the homepage</Link>
     </Layout>

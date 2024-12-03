@@ -1,5 +1,5 @@
 import React from "react";
-import * as styles from "../styles/global.css"; // Optional if you use this in your app
+import  "../styles/global.css"
 
 const InfoBox = ({ info }) => {
   return (
