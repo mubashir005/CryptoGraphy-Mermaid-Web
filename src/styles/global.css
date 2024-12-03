@@ -46,18 +46,23 @@ body {
 .info-box {
     position: absolute;
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    pointer-events: none; /* Prevent interference with cursor */
     color: #343a40;
     padding: 12px 16px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     font-size: 16px;
     line-height: 1.4;
-    pointer-events: none;
+    pointer-events: none; /* Prevent pointer interference */
     border: 1px solid #ced4da;
-    z-index: 100;
+    z-index: 9999;
     max-width: 300px;
-    display: none;
+    top: 0px;
+    left: 0px;
+    display: none; /* Initially hidden */
+    transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out; /* Smooth appearance */
 }
+
 
 .info-box::before {
     content: "";
