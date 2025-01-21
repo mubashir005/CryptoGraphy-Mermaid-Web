@@ -1,31 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { graphql } from "gatsby";
-import { useLocation } from "@reach/router"; // 👈 Import useLocation
+import { useLocation } from "@reach/router"; 
 import InfoBox from "../components/InfoBox";
 import Navbar from "../components/Navbar";
 import "../styles/flowchart.css";
-import mermaid from "mermaid"; // Import Mermaid
+import mermaid from "mermaid";
 
 const MarkdownFlowchart = ({ data }) => {
-  const location = useLocation(); // 👈 Detects when user navigates
-  const [info, setInfo] = useState({
-    title: "",
-    text: "",
-    link: "",
-  });
-
+  const location = useLocation();
+  const [info, setInfo] = useState({ title: "", text: "", link: "" });
   const [markdownContent, setMarkdownContent] = useState(
     data?.allMdx?.nodes?.[0]?.body || ""
   );
   const [infoData, setInfoData] = useState(
     data?.allMdx?.nodes?.[0]?.frontmatter?.infoData || []
   );
+  const mermaidRef = useRef(null); // 👈 Ref for Mermaid container
 
-  // Re-run effect if Markdown file changes
   useEffect(() => {
     setMarkdownContent(data?.allMdx?.nodes?.[0]?.body || "");
     setInfoData(data?.allMdx?.nodes?.[0]?.frontmatter?.infoData || "");
   }, [data]);
+
+  useEffect(() => {
+    const renderMermaid = () => {
+      if (mermaidRef.current) {
+        mermaid.initialize({ startOnLoad: false });
+
+        // Remove the 'data-processed' attribute to force a re-render
+        mermaidRef.current.removeAttribute("data-processed");
+
+        setTimeout(() => {
+          mermaid.init(undefined, mermaidRef.current); // ✅ Re-initialize Mermaid
+        }, 100);
+      }
+    };
+
+    renderMermaid();
+  }, [markdownContent, location.pathname]);
 
   useEffect(() => {
     const addCustomListeners = () => {
@@ -74,29 +86,22 @@ const MarkdownFlowchart = ({ data }) => {
       });
     };
 
-    // Initialize Mermaid
-    mermaid.initialize({ startOnLoad: false });
+    setTimeout(addCustomListeners, 200);
+  }, [infoData]);
 
-    // Force re-initialization when navigating back
-    setTimeout(() => {
-      mermaid.contentLoaded();
-      addCustomListeners();
-    }, 100);
-
-  }, [markdownContent, infoData, location.pathname]); // 👈 Add location.pathname to re-run effect
+  const parseMermaidContent = (content) => {
+    return content.replace("```mermaid", "").replace("```", "").trim();
+  };
 
   return (
-    <div key={location.pathname}> {/* 👈 Forces re-render when navigating back */}
+    <div key={location.pathname}>
       <Navbar />
       <div className="flowchart-container">
         <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Markdown Flowchart</h1>
         <div className="mermaid-wrapper">
           {markdownContent ? (
-            <div className="mermaid">
-              {markdownContent
-                .replace("```mermaid", "")
-                .replace("```", "")
-                .trim()}
+            <div className="mermaid" ref={mermaidRef}>
+              {parseMermaidContent(markdownContent)}
             </div>
           ) : (
             <p style={{ textAlign: "center" }}>No content available.</p>

@@ -1,21 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { graphql } from "gatsby";
 import { useLocation } from "@reach/router"; 
 import InfoBox from "../components/InfoBox";
 import Navbar from "../components/Navbar";
 import "../styles/flowchart.css";
-import mermaid from "mermaid"; // Import Mermaid
+import mermaid from "mermaid";
 
 const FlowchartTemplate = ({ data }) => {
-  const location = useLocation(); // 👈 Detects when user navigates
-  const [info, setInfo] = useState({
-    title: "",
-    text: "",
-    link: "",
-  });
-
+  const location = useLocation();
+  const [info, setInfo] = useState({ title: "", text: "", link: "" });
   const { body, frontmatter } = data.mdx;
   const [infoData, setInfoData] = useState(frontmatter?.infoData || []);
+  const mermaidRef = useRef(null);
+
+  useEffect(() => {
+    const renderMermaid = () => {
+      if (mermaidRef.current) {
+        mermaid.initialize({ startOnLoad: false });
+
+        // Remove the 'data-processed' attribute to force a re-render
+        mermaidRef.current.removeAttribute("data-processed");
+
+        setTimeout(() => {
+          mermaid.init(undefined, mermaidRef.current); // ✅ Re-initialize Mermaid
+        }, 100);
+      }
+    };
+
+    renderMermaid();
+  }, [body, location.pathname]);
 
   useEffect(() => {
     const addCustomListeners = () => {
@@ -64,31 +77,21 @@ const FlowchartTemplate = ({ data }) => {
       });
     };
 
-    // Initialize Mermaid
-    mermaid.initialize({ startOnLoad: false });
-
-    // Force re-initialization when navigating back
-    setTimeout(() => {
-      mermaid.contentLoaded();
-      addCustomListeners();
-    }, 100);
-  }, [body, infoData, location.pathname]); 
+    setTimeout(addCustomListeners, 200);
+  }, [infoData]);
 
   const parseMermaidContent = (content) => {
-    return content
-      .replace("```mermaid", "")
-      .replace("```", "")
-      .trim();
+    return content.replace("```mermaid", "").replace("```", "").trim();
   };
 
   return (
-    <div key={location.pathname}> 
+    <div key={location.pathname}>
       <Navbar />
       <div className="flowchart-container">
         <h1 style={{ textAlign: "center", marginBottom: "20px" }}>{frontmatter.title}</h1>
         <div className="mermaid-wrapper">
           {body ? (
-            <div className="mermaid">
+            <div className="mermaid" ref={mermaidRef}>
               {parseMermaidContent(body)}
             </div>
           ) : (
