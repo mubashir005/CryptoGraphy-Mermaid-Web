@@ -4,7 +4,7 @@
   "description": "Modern Cryptography website",
   "version": "0.1.0",
   "author": "Rohel",
-  "homepage": "https://mubashir005.github.io/rohelweb",
+  "homepage": "https://mubashir005.github.io/CryptoGraphy-Mermaid-Web",
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
     "d3": "^7.9.0",

@@ -1,10 +1,10 @@
 module.exports = {
-  pathPrefix: "/rohelweb",
+  pathPrefix: "/CryptoGraphy-Mermaid-Web",
   siteMetadata: {
     title: `CryptoGraphy Website`,
     description: `My Gatsby site hosted on GitHub Pages.`,
     author: `@mubashir005`,
-    siteUrl: `https://mubashir005.github.io/rohelweb`,
+    siteUrl: `https://mubashir005.github.io/CryptoGraphy-Mermaid-Web`,
   },
   plugins: [
     `gatsby-plugin-image`,
