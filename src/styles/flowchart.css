@@ -1,0 +1,254 @@
+/* Flowchart Container */
+.flowchart-container {
+    max-width: 1500px;
+    margin-top: 30px; /* Add 30px gap above */
+    margin-left: auto;
+    margin-right: auto; /* Center the container horizontally */
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+/*     border-radius: 10px; */
+    overflow: hidden; /* Prevent overflow issues */
+}
+
+/* Mermaid Wrapper */
+.mermaid-wrapper {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    overflow-x: auto; /* Enable horizontal scrolling for large flowcharts */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+/* Mermaid Graph Styling */
+/* Mermaid Graph Styling */
+.mermaid {
+    display: inline-block; /* Allow dynamic content expansion */
+    width: 100%; /* Scale graph to fit container width */
+    max-width: 100%; /* Prevent the graph from exceeding container width */
+    height: auto; /* Maintain aspect ratio */
+    overflow: visible; /* Ensure all SVG content is rendered */
+    align-items: center;
+    text-align: center;
+}
+
+.mermaid svg {
+    width: 1200px; /* Set the SVG width */
+    height: auto; /* Maintain the aspect ratio */
+    max-width: 100%; /* Prevent the SVG from exceeding the container */
+    max-height: 100%; /* Prevent cutting on smaller screens */
+    margin: auto; /* Center the SVG */
+    display: block; /* Ensure block-level behavior */
+    overflow: visible; /* Ensure all SVG content is rendered */
+    padding: 20px; /* Optional padding for spacing */
+    padding-bottom: 200px;
+    padding-right: 200px;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .flowchart-container {
+        max-width: 90%; /* Adjust width for medium screens */
+        padding: 15px 15px; /* Reduce padding */
+    }
+
+    .mermaid-wrapper {
+        max-height: 800px; /* Reduce height for medium screens */
+        padding: 15px; /* Reduce padding */
+    }
+}
+
+@media (max-width: 768px) {
+    .flowchart-container {
+        max-width: 95%; /* Adjust width for smaller screens */
+        padding: 10px 10px; /* Reduce padding further */
+    }
+
+    .mermaid-wrapper {
+        padding: 10px; /* Reduce padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .flowchart-container {
+        max-width: 100%; /* Use full width on very small screens */
+        padding: 8px 8px; /* Minimize padding */
+    }
+
+    .mermaid-wrapper {
+        max-height: 500px; /* Minimize height for very small screens */
+        padding: 8px; /* Minimize padding */
+    }
+
+    .mermaid svg {
+        padding-bottom: 50px;
+        padding-right: 100px; /* Adjust paddings */
+        
+    }
+
+    .mermaid {
+        font-size: 0.8rem; /* Adjust text size for smaller screens */
+    }
+}
+
+
+/* Responsive Adjustments */
+/* @media (max-width: 1024px) {
+    .flowchart-container {
+        max-width: 90%; 
+        padding: 15px 15px;
+    }
+
+    .mermaid-wrapper {
+        max-height: 800px; 
+        padding: 15px; 
+    }
+
+    .mermaid svg {
+        width: 100%; 
+        height: auto; 
+    }
+
+    .mermaid {
+        font-size: 0.9rem; 
+    }
+}
+
+@media (max-width: 768px) {
+    .flowchart-container {
+        max-width: 95%; 
+        padding: 10px 10px; 
+    }
+
+    .mermaid-wrapper {
+        padding: 10px; 
+    }
+
+    .mermaid svg {
+        width: 100%;
+        height: auto; 
+    }
+
+    .mermaid {
+        font-size: 0.8rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .flowchart-container {
+        max-width: 100%; 
+        padding: 8px 8px; 
+    }
+
+    .mermaid-wrapper {
+        max-height: 500px; 
+        padding: 8px; 
+    }
+
+    .mermaid svg {
+        width: 100%; 
+        height: auto; 
+    }
+
+    .mermaid {
+        font-size: 0.7rem;
+    }
+} */
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+/* Info Box */
+.info-box {
+    position: absolute;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #343a40;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    line-height: 1.4;
+    border: 1px solid #ced4da;
+    z-index: 9999;
+    max-width: 300px;
+    top: 0px;
+    left: 0px;
+    display: none;
+    transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
+  }
+  
+  .info-box::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: #e9ecef transparent transparent transparent;
+  }
+  
+  .info-box h4 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .info-box p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  /* Responsive Adjustments */
+@media (max-width: 768px) {
+    .info-box {
+        font-size: 0.9rem; /* Slightly smaller font for smaller screens */
+        padding: 10px 14px; /* Adjust padding for smaller screens */
+        width: 95%; /* Use most of the screen width on smaller devices */
+    }
+
+    .info-box h4 {
+        font-size: 0.95rem; /* Slightly smaller title font */
+    }
+
+    .info-box p {
+        font-size: 0.85rem; /* Slightly smaller paragraph font */
+    }
+
+    .info-box::before {
+        border-width: 8px; /* Smaller arrow for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .info-box {
+        font-size: 0.8rem; /* Even smaller font for very small screens */
+        padding: 8px 12px;
+    }
+
+    .info-box h4 {
+        font-size: 0.85rem;
+    }
+
+    .info-box p {
+        font-size: 0.75rem;
+    }
+}
+
+  /* Add styles for nodes */
+/* .node {
+  cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.node:hover {
+  filter: drop-shadow(0 0 10px rgba(0, 123, 255, 0.8));
+} */

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./Navbar";  // Import the Navbar component
-import InfoBox from "./InfoBox"; // Import the InfoBox component
+import ReactDOM from 'react-dom/client';
+import Navbar from "./Navbar";  
+import { motion } from "framer-motion";
+import InfoBox from "./InfoBox"; 
 import networksvg from '../assets/network-01.svg';
 import { Link } from "gatsby";
 import "../styles/global.css";
+
+
 
 const HomePage = () => {
   const [info, setInfo] = useState({
@@ -17,42 +21,42 @@ const HomePage = () => {
       csecrecy: {
         title: "Computational Secrecy",
         text: "Computational Secrecy is some topic inside this node. More detail will be added afterwards.",
-        link: "/nodes", // Corrected to relative path
+        link: "/Computational_Security",
       },
       EAV: {
         title: "EAV-Security",
         text: "EAV-Security is some topic inside this node. More detail will be added afterwards.",
-        link: "/nodes", // Corrected to relative path
+        link: "/Computational_Security", 
       },
       psecrecy: {
         title: "Perfect secrecy",
         text: "Perfect secrecy is some topic inside this node. More detail will be added afterwards.",
-        link: "/nodes", // Corrected to relative path
+        link: "/perfectSecrecyPage", 
       },
       capproach: {
         title: "Concrete Approach",
         text: "Concrete Approach is some topic inside this node. More detail will be added afterwards.",
-        link: "/nodes", // Corrected to relative path
+        link: "/concreteApproach", 
       },
       aapproach: {
         title: "Asymptotic Approach",
         text: "Asymptotic Approach is some topic inside this node. More detail will be added afterwards.",
-        link: "/nodes", // Corrected to relative path
+        link: "/asymptoticApproach", 
       },
       indis: {
         title: "Indistinguishability",
         text: "Indistinguishability is some topic inside this node. More detail will be added afterwards.",
-        link: "/nodes", // Corrected to relative path
+        link: "/indistinguishabilityPage", 
       },
       pgenerator: {
         title: "Pseudorandom Generators",
         text: "Pseudorandom Generators is some topic inside this node. More detail will be added afterwards.",
-        link: "/nodes", // Corrected to relative path
+        link: "/pseudorandomGeneratorPage", 
       },
       poreduction: {
         title: "Proof of Reduction",
         text: "Proof of Reduction is some topic inside this node. More detail will be added afterwards.",
-        link: "/nodes", // Corrected to relative path
+        link: "/proofOfReductionPage", 
       },
     };
 
@@ -78,34 +82,34 @@ const HomePage = () => {
   const handleRedirect = (id) => {
     const nodes = {
       csecrecy: {
-        link: "/nodes",
+        link: "/Computational_Security",
       },
       EAV: {
-        link: "/nodes",
+        link: "/Computational_Security",
       },
       psecrecy: {
-        link: "/nodes",
+        link: "/perfectSecrecyPage",
       },
       capproach: {
-        link: "/nodes",
+        link: "/concreteApproach",
       },
       aapproach: {
-        link: "/nodes",
+        link: "/asymptoticApproach",
       },
       indis: {
-        link: "/nodes",
+        link: "/indistinguishabilityPage",
       },
       pgenerator: {
-        link: "/nodes",
+        link: "/pseudorandomGeneratorPage",
       },
       poreduction: {
-        link: "/nodes",
+        link: "/proofOfReductionPage",
       },
     };
 
-    const link = nodes[id]?.link; // Access the link property dynamically
+    const link = nodes[id]?.link; 
     if (link) {
-      // Perform the redirect by updating the window location
+      
       window.location.href = link;
     }
   };
@@ -113,14 +117,14 @@ const HomePage = () => {
   useEffect(() => {
     const svgContainer = document.getElementById("svg-container");
     const infoBox = document.getElementById("info-box");
-
+    
     // Fetch and inject the SVG content
     fetch(networksvg)
       .then((response) => response.text())
       .then((svgContent) => {
         svgContainer.innerHTML = svgContent;
 
-        // Add hover and click interactions
+        
         const nodes = [
           "csecrecy",
           "EAV",
@@ -155,7 +159,7 @@ const HomePage = () => {
             });
 
             element.addEventListener("click", () => {
-              handleRedirect(id); // Redirect on click
+              handleRedirect(id); 
             });
           }
         });
@@ -163,7 +167,7 @@ const HomePage = () => {
       .catch((error) => console.error("Error loading SVG:", error));
 
     return () => {
-      // Clean up event listeners when the component is unmounted
+      // Clean up event listeners
       const svgElements = document.querySelectorAll(".icon");
       svgElements.forEach((element) => {
         element.removeEventListener("mouseover", handleMouseOver);
@@ -175,10 +179,27 @@ const HomePage = () => {
 
   return (
     <div>
+      <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.5 }}
+      transition={{ duration: 0.5 }}
+    ></motion.div>
       <Navbar />
       <div className="map-container">
         <div id="svg-container" />
         <InfoBox info={info} />
+      </div>
+      <div style={{ marginTop: "20px" }}>
+        <Link to="/MarkdownFlowchart">
+          <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              whileHover={{ scale: 1.2 }}
+              transition={{ duration: 0.3 }}
+            >View Markdown Flowchart
+          </motion.button>
+        </Link>
       </div>
     </div>
   );

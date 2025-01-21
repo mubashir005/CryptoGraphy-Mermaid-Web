@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
-import { useLocation } from "@reach/router"; // 👈 Import useLocation
+import { useLocation } from "@reach/router"; 
 import InfoBox from "../components/InfoBox";
 import Navbar from "../components/Navbar";
 import "../styles/flowchart.css";
 import mermaid from "mermaid"; // Import Mermaid
 
-const MarkdownFlowchart = ({ data }) => {
+const FlowchartTemplate = ({ data }) => {
   const location = useLocation(); // 👈 Detects when user navigates
   const [info, setInfo] = useState({
     title: "",
@@ -14,18 +14,8 @@ const MarkdownFlowchart = ({ data }) => {
     link: "",
   });
 
-  const [markdownContent, setMarkdownContent] = useState(
-    data?.allMdx?.nodes?.[0]?.body || ""
-  );
-  const [infoData, setInfoData] = useState(
-    data?.allMdx?.nodes?.[0]?.frontmatter?.infoData || []
-  );
-
-  // Re-run effect if Markdown file changes
-  useEffect(() => {
-    setMarkdownContent(data?.allMdx?.nodes?.[0]?.body || "");
-    setInfoData(data?.allMdx?.nodes?.[0]?.frontmatter?.infoData || "");
-  }, [data]);
+  const { body, frontmatter } = data.mdx;
+  const [infoData, setInfoData] = useState(frontmatter?.infoData || []);
 
   useEffect(() => {
     const addCustomListeners = () => {
@@ -82,24 +72,27 @@ const MarkdownFlowchart = ({ data }) => {
       mermaid.contentLoaded();
       addCustomListeners();
     }, 100);
+  }, [body, infoData, location.pathname]); 
 
-  }, [markdownContent, infoData, location.pathname]); // 👈 Add location.pathname to re-run effect
+  const parseMermaidContent = (content) => {
+    return content
+      .replace("```mermaid", "")
+      .replace("```", "")
+      .trim();
+  };
 
   return (
-    <div key={location.pathname}> {/* 👈 Forces re-render when navigating back */}
+    <div key={location.pathname}> 
       <Navbar />
       <div className="flowchart-container">
-        <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Markdown Flowchart</h1>
+        <h1 style={{ textAlign: "center", marginBottom: "20px" }}>{frontmatter.title}</h1>
         <div className="mermaid-wrapper">
-          {markdownContent ? (
+          {body ? (
             <div className="mermaid">
-              {markdownContent
-                .replace("```mermaid", "")
-                .replace("```", "")
-                .trim()}
+              {parseMermaidContent(body)}
             </div>
           ) : (
-            <p style={{ textAlign: "center" }}>No content available.</p>
+            <p style={{ textAlign: "center" }}>No flowchart content available.</p>
           )}
         </div>
         <InfoBox info={info} />
@@ -109,25 +102,20 @@ const MarkdownFlowchart = ({ data }) => {
 };
 
 export const query = graphql`
-  query {
-    allMdx(
-      filter: {
-        internal: { contentFilePath: { regex: "/src/components/md/" } }
-      }
-    ) {
-      nodes {
-        body
-        frontmatter {
-          infoData {
-            id
-            title
-            text
-            link
-          }
+  query ($id: String!) {
+    mdx(id: { eq: $id }) {
+      body
+      frontmatter {
+        title
+        infoData {
+          id
+          title
+          text
+          link
         }
       }
     }
   }
 `;
 
-export default MarkdownFlowchart;
+export default FlowchartTemplate;
