@@ -1,10 +1,10 @@
 {
-  "name": "Cryptography",
+  "name": "cryptography-website",
   "private": true,
   "description": "Modern Cryptography website",
   "version": "0.1.0",
   "author": "Rohel",
-  "homepage": "https://github.com/mubashir005/rohelweb",
+  "homepage": "https://mubashir005.github.io/rohelweb",
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
     "d3": "^7.9.0",
@@ -24,7 +24,7 @@
     "react-markdown": "^8.0.7"
   },
   "devDependencies": {
-    "gh-pages": "^6.2.0",
+    "gh-pages": "^6.3.0",
     "prettier": "^2.8.8"
   },
   "keywords": [

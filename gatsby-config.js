@@ -1,10 +1,10 @@
 module.exports = {
   pathPrefix: `/rohelweb/`,
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `CryptoGraphy Website`,
+    description: `My Gatsby site hosted on GitHub Pages.`,
+    author: `@mubashir005`,
+    siteUrl: `https://mubashir005.github.io/rohelweb`,
   },
   plugins: [
     `gatsby-plugin-image`,
