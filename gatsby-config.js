@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: `/rohelweb/`,
+  pathPrefix: "/rohelweb",
   siteMetadata: {
     title: `CryptoGraphy Website`,
     description: `My Gatsby site hosted on GitHub Pages.`,
