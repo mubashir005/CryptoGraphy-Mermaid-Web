@@ -30,7 +30,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`, // Add this block for flowchart MD files
+      resolve: `gatsby-source-filesystem`, 
       options: {
         name: `flowchartmdfiles`,
         path: `${__dirname}/src/flowchartmdfiles`,

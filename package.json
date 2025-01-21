@@ -27,9 +27,7 @@
     "gh-pages": "^6.3.0",
     "prettier": "^2.8.8"
   },
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
@@ -43,9 +41,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/mubashir005/rohelweb.git"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/mubashir005/rohelweb/issues"
   }
 }
