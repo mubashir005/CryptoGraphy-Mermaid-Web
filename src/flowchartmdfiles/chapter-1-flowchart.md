@@ -47,6 +47,10 @@ infoData:
     title: "Intelligent"
     text: "Omar is INTELLIGENT."
     link: "/pseudorandom-generator"
+  - id: "md"
+    title: "Intelligent"
+    text: "Omar is INTELLIGENT."
+    link: "/pseudorandom-generator"
 ---
 
 ```mermaid
@@ -64,7 +68,7 @@ graph TD
     I[Rohel]:::hoverNode
     J[omar]:::hoverNode
     Omar[Intelligent]:::hoverNode
-    K[Mero]:::hoverNode
+    K[md]:::hoverNode
 
     %% Define the flow of the nodes
 

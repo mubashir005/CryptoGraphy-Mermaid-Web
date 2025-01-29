@@ -1,12 +1,12 @@
 ---
-title: "Understanding Secrecy and Security Approaches"
-slug: "/chapter-1"
+title: "Markdown Flowchart"
+slug: "/Main-flowchart"
 infoData:
   - id: "Perfect secrecy"
     title: "Perfect Secrecy"
     text: "Perfect Secrecy is some topic inside this node. More detail will be added afterwards."
     link: "/perfect-secrecy"
-  - id: "Computational secrecy"
+  - id: "computational-security"
     title: "Computational Secrecy"
     text: "Computational Secrecy is some topic inside this node. More detail will be added afterwards."
     link: "/computational-security"
@@ -42,7 +42,6 @@ infoData:
     title: "Omar"
     text: "Omar is some topic inside this node. More detail will be added afterwards."
     link: "/omer-page"
-
   - id: "Intelligent"
     title: "Intelligent"
     text: "Omar is INTELLIGENT."

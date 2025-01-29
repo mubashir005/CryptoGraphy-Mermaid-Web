@@ -14,21 +14,24 @@ const FlowchartTemplate = ({ data }) => {
   const mermaidRef = useRef(null);
 
   useEffect(() => {
-    const renderMermaid = () => {
-      if (mermaidRef.current) {
-        mermaid.initialize({ startOnLoad: false });
-
-        // Remove the 'data-processed' attribute to force a re-render
-        mermaidRef.current.removeAttribute("data-processed");
-
-        setTimeout(() => {
-          mermaid.init(undefined, mermaidRef.current); // ✅ Re-initialize Mermaid
-        }, 100);
+    const renderMermaid = async () => {
+      try {
+        if (mermaidRef.current && !mermaidRef.current.hasAttribute('data-processed')) {
+          mermaid.initialize({ startOnLoad: false });
+          mermaidRef.current.removeAttribute("data-processed"); // Forces re-render
+          
+          await new Promise((resolve) => setTimeout(resolve, 0)); // Wait for the setTimeout
+          mermaid.init(undefined, mermaidRef.current);
+          mermaidRef.current.setAttribute('data-processed', 'true');
+        }
+      } catch (error) {
+        console.error("Mermaid initialization error:", error);
       }
     };
-
+  
     renderMermaid();
   }, [body, location.pathname]);
+  
 
   useEffect(() => {
     const addCustomListeners = () => {
